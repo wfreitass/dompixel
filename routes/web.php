@@ -20,5 +20,9 @@ Route::get('/', function () {
 
 Route::prefix('product')->controller(ProductController::class)->group(function () {
     Route::get('/', 'index')->name('listProducts');
-    Route::post('/store', 'store')->name('product.storeProducts');
+    Route::get('/create', 'create')->name('createProducts');
+    Route::post('/store', 'store')->name('storeProducts');
+    Route::get('/edit/{product}', 'edit')->name('editProducts');
+    Route::put('/update/{product}', 'update')->name('updateProducts');
+    Route::delete('/destroy/{product}', 'destroy')->name('destroyProducts');
 });

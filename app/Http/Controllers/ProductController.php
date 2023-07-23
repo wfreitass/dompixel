@@ -6,7 +6,6 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Services\ProductService;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -25,7 +24,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return $this->productService->all();
+        return view('product.list', ['produtos' => $this->productService->all()]);
     }
 
     /**
@@ -35,7 +34,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.formCreate');
     }
 
     /**
@@ -44,10 +43,10 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-
-        return $this->productService->create($request->all());
+        $this->productService->create($request->all());
+        return view('product.list', ['produtos' => $this->productService->all()]);
     }
 
     /**
@@ -69,7 +68,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product.formEdit', ['produto' => $product]);
     }
 
     /**
@@ -81,7 +80,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $this->productService->update($product, $request->all());
+        return view('product.list', ['produtos' => $this->productService->all()]);
     }
 
     /**
@@ -92,6 +92,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $this->productService->destroy($product);
+        return view('product.list', ['produtos' => $this->productService->all()]);
     }
 }
