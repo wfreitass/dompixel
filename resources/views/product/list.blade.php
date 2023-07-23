@@ -2,6 +2,12 @@
 @section('content')
     <h1>Catálogo de Produtos</h1>
     <a href="{{ route('createProducts') }}" class="btn btn-primary">Adicionar Produto</a>
+    @if (!count($produtos))
+        <div class="alert alert-danger mt-3" role="alert">
+            Nenhum Produto Cadastrado
+        </div>
+    @endif
+
     @foreach ($produtos as $produto)
         @if ($loop->iteration % 3 === 1)
             <div class="row">

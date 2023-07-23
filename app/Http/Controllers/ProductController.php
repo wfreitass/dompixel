@@ -93,6 +93,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $this->productService->destroy($product);
-        return view('product.list', ['produtos' => $this->productService->all()]);
+        return redirect()->route('listProducts', ['produtos' => $this->productService->all()]);
     }
 }
