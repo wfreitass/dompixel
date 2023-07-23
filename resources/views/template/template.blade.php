@@ -31,8 +31,9 @@
                             Produtos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Lista de Produtos</a></li>
-                            <li><a class="dropdown-item" href="#">Cadastrar Produtos</a></li>
+                            <li><a class="dropdown-item" href="{{ route('listProducts') }}">Lista de Produtos</a></li>
+                            <li><a class="dropdown-item" href="{{ route('createProducts') }}">Cadastrar Produtos</a>
+                            </li>
 
                         </ul>
                     </li>
